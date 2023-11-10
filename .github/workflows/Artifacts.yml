@@ -1,0 +1,47 @@
+name: Artifactsruth React App
+permissions:
+    contents: write
+on: 
+  pull_request:
+    types:
+       - opened  
+  workflow_dispatch:
+  push:
+    branches:
+       - main
+       - 'hotfix-*'
+       - 'feature/**'
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Code
+              uses: actions/checkout@v3
+            - name: install Node v21.1.0
+              uses: actions/setup-node@v3
+              with:
+                node-version: 21.1.0
+            - name: Install
+              run: npm install
+            - name: Test
+              run: npm test > test.txt
+            - name: Upload Test
+              uses: actions/upload-artifact@v3
+              with:
+                name: testing
+                path: test.txt
+    download-test:
+        name: Download Test
+        runs-on: ubuntu-latest
+        needs: test
+        steps:             
+          - name: DownloadTest 
+            uses: actions/download@v3
+            with:
+             name: testing
+          - name: print result
+            shell: bash          
+            run:
+              value = 'cat test.txt'
+              echo $value  
