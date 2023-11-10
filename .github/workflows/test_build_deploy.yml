@@ -31,7 +31,7 @@ jobs:
               run: npm install
             - name: Test
               run: npm test
-    build-and-deploy:
+    build:
         runs-on: ubuntu-latest
         steps:
           - name: Code
@@ -44,6 +44,17 @@ jobs:
             run: npm install
           - name: Build
             run: npm run build
+    deploy:          
+      runs-on: ubuntu-latest
+      steps:
+          - name: Code
+            uses: actions/checkout@v3
+          - name: install Node v21.1.0
+            uses: actions/setup-node@v3
+            with:
+                node-version: 21.1.0
+          - name: Install
+            run: npm install          
           - name: Deploy
             uses: JamesIves/github-pages-deploy-action@v4       
             with:
