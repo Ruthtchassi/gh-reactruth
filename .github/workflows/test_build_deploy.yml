@@ -17,7 +17,7 @@ on:
 permissions:
   contents: read
   pages: write
-  id-token: write
+  
 jobs:
     test:
         runs-on: ubuntu-latest
@@ -50,4 +50,6 @@ jobs:
             with:
               folder: build
               branch: gh-reactruth
-            
+            env:
+              ACCESS_token: ${{ secrets.ACCESS }}
+
