@@ -1,5 +1,19 @@
 name: test React app
-on: [push, workflow_dispatch]
+on: 
+  pull_request:
+    types:
+       - opened  
+  workflow_dispatch:
+  push:
+    branches:
+       - main
+       - 'hotfix-*'
+       - 'feature/**'
+#path-ignore:
+ #       - '.github/workflows/*'   
+# ex: hotfix-fix-ajout
+# ex: feature/fix/ajout/../
+
 jobs:
     test:
         runs-on: ubuntu-latest
