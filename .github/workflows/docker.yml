@@ -1,32 +1,21 @@
 name: test React app
-on: 
- # pull_request:
-    #types:
-      # - opened  
+on:  
   workflow_dispatch:
-  #push:
-    #branches:
-       #- main
-       #- 'hotfix-*'
-       #- 'feature/**'
-#path-ignore:
- #       - '.github/workflows/*'   
-# ex: hotfix-fix-ajout
-# ex: feature/fix/ajout/../
-# la ligne de permission est propre au build et au deployement
 permissions:
   contents: write
 
 jobs:
     test:
         runs-on: ubuntu-latest
+        container:
+            image: node:21.1.0
         steps:
             - name: Code
               uses: actions/checkout@v3
-            - name: install Node v21.1.0
-              uses: actions/setup-node@v3
-              with:
-                node-version: 21.1.0
+           # - name: install Node v21.1.0
+           #   uses: actions/setup-node@v3
+           # with:
+               # node-version: 21.1.0
             - name: Install
               run: npm install
             - name: Test
