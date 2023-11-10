@@ -41,7 +41,7 @@ jobs:
             uses: actions/setup-node@v3
             with:
              node-version: 21.1.0
-          - name: Install
+          - name: install
             run: npm install
           - name: Build
             run: npm run build
@@ -55,7 +55,7 @@ jobs:
             uses: actions/setup-node@v3
             with:
                 node-version: 21.1.0
-          - name: Install
+          - name: install
             run: npm install
           - name: Build
             run: npm run build          
