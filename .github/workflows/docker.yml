@@ -1,8 +1,7 @@
 name: test React app
-on:  
-  workflow_dispatch:
 permissions:
   contents: write
+on: workflow_dispatch
 
 jobs:
     test:
